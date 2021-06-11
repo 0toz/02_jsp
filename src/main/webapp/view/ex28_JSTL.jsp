@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt"%>
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,7 +40,7 @@
 
 	<!-- 		변수 삭제 후 출력해 보기 -->
 	<c:remove var="str" />
-	<li>결과 : <c:out value="${str}" />
+	<li>결과 : <c:out value="${str}"/>
 	</li>
 	<li>결과${str}</li>
 
@@ -72,9 +72,9 @@
 	</c:if>
 
 
-	<!-- if문은 else가 없는 불편함이 있어서
+	<%-- if문은 else가 없는 불편함이 있어서
 		choose문을 사용한다. (choose문은 switch 문 과 비슷하다 . 이프엘스 댓니으로 많이 사용.)
-		 -->
+		 --%>
 
 	<%-- 
 		<c:choose>
@@ -94,7 +94,6 @@
 			<li>불합격</li>
 		</c:when>
 	</c:choose>
-
 
 
 
@@ -171,19 +170,76 @@ ${k}/ ${vs.count} /${vs.index }  / ${vs.first /${vs.last} &nbsp;&nbsp;&nbsp;
 
 
 
+반복하면서 나누기
+<%-- <c:forTokens items="배열, 컬렉션" delims="구분자" var="변수"></c:forTokens> --%>
+<c:set var="arr2" value="홍길동, 임꺽정, 장길산/일지매, 둘리, 희동이 /고길동, 마이콜"/>
+<c:forTokens items="${arr2 }" delims="," var="k">
+<li> ${k } </li>
+</c:forTokens>
+
+<c:set var="arr2" value="홍길동, 임꺽정, 장길산/일지매, 둘리, 희동이 /고길동, 마이콜"/>
+<c:forTokens items="${arr2 }" delims="/" var="k">
+<li> ${k } </li>
+</c:forTokens>
+
+<c:set var="arr2" value="홍길동, 임꺽정, 장길산/일지매, 둘리, 희동이 /고길동, 마이콜"/>
+<c:forTokens items="${arr2 }" delims="/," var="k">
+<li> ${k } </li>
+</c:forTokens>
+<!-- 구분자를 여러개 넣을 수 있다. -->
+<!-- 
+페이지 이동 : forward, sendRedirect
+JSP액션 태그 : forward만 존재
+JSTL : sendRedirect만 존재
+둘다 파라미터값을 넘길 수 있다.ㄴ
+ -->
+<%-- 
+<jsp:forward page="이동할 장소">
+	<jsp:param value="" name=""/>
+	</jsp:forward>
+
+ <%request.setCharacterEncoding("utf-8"); %>  <!-- 보내는 쪽에서 한글 처리 -->
+<jsp:forward page="ex08.jsp">
+	<jsp:param value="도우너" name="name"/>
+	<c:param name="age" value="36" ></c:param>
+	</jsp:forward>
+
+
+<c:redirect url="ex08.jsp">
+<c:param name="name" value="또치" ></c:param>
+<c:param name="age" value="108" ></c:param>
+</c:redirect>
+
+
+ --%>
 
 
 
+<h2>form태그를 이해서 파라미터 전송</h2>
+<form action="ex29_result.jsp">
+<fieldset>
+<legend>데이터 전송</legend>
+<p>이름 : <input type="text" name="name" placeholder="이름 입력하세요 " required></p>
+<p>나이 : <input type="number" name="age" placeholder ="나이 입력하세요 "required></p>
+
+<p> 성별 : <input type="radio" name="gender" value="남성"> 남성
+			<input type="radio" name="gender" value="여성"> 여성
+
+</p>
+
+<p> 취미: <input type="checkbox" name= hobby value="운동"> 운동
+<input type="checkbox" name= hobby value="게임"> 게임
+<input type="checkbox" name= hobby value="노래"> 노래
+<input type="checkbox" name= hobby value="수면"> 수면
+
+</p>
+
+<input type="submit" name="보내기">
 
 
+</fieldset>
 
-
-
-
-
-
-
-
+</form>
 
 
 

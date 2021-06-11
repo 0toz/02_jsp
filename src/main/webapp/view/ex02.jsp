@@ -1,3 +1,4 @@
+<%@page import="java.util.Calendar"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -91,7 +92,7 @@
 for(int i =1 ; i< 10 ; i++){
 	out.println("5 *" + i + "=" + (5*i) + "<br>");
 }
-for(int i = i; i<10 ; i ++){
+for(int i = 1; i<10 ; i ++){
 	
 }
 %>
